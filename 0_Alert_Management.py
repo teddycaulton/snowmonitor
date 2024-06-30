@@ -5,6 +5,10 @@ import sys
 sys.path.append('./src')
 from helpers import helpers
 
+st.set_page_config(
+    page_title = "Alert Management"
+)
+
 session = helpers.create_snowpark_session('tcaulton', 'Foo1234!', 'QTB38119', 'accountadmin', 'compute_wh')
 
 st.title("Snowmonitor: Snowflake Alert Management")
@@ -25,7 +29,12 @@ for row in alert_data.values:
             st.write(f"Schema: {row[2]}")
             st.write(f"Schedule: {row[4]}")
             st.write(f"State: {row[5]}")
+
         if st.checkbox("Run History (last 10 runs)", key = row[0]):
             alert_history_df = helpers.read_alert_history(session, row[0])
             st.table(alert_history_df)
+        st.error("Be sure you want to select the button below")
+        if st.button("Delete Alert", key = f'{row[0]}_delete_alert'):
+            helpers.execute_sql(session, f"DROP ALERT IF EXISTS {row[1]}.{row[2]}.{row[0]}")
+
 
