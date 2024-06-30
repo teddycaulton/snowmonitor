@@ -30,6 +30,11 @@ class helpers:
         string = string[:-2]
         return string
     def read_current_alerts(session):
-        helpers.execute_sql(session, "USE ROLE SYSADMIN")
+        helpers.execute_sql(session, "USE ROLE ACCOUNTADMIN")
         current_alerts = pd.DataFrame(helpers.execute_sql(session, "SHOW ALERTS"))[["name", "database_name", "schema_name", "owner", "schedule", "state", "condition", "action"]]
+        # print(current_alerts)
         return current_alerts
+    
+    def read_alert_history(session, alert_name):
+        alert_history = helpers.execute_sql_pandas(session, f"SELECT NAME, SCHEDULED_TIME, COMPLETED_TIME, ERROR_CODE, ERROR_MESSAGE, STATE FROM SNOWFLAKE.ACCOUNT_USAGE.ALERT_HISTORY WHERE NAME = '{alert_name}' ORDER BY SCHEDULED_TIME DESC")
+        return alert_history
