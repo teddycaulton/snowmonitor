@@ -13,6 +13,7 @@ session = helpers.create_snowpark_session('tcaulton', 'Foo1234!', 'QTB38119', 'a
 
 st.title("Alert Creation")
 
+role = st.text_input("What role do you want to use (case sensitive and host user must have access to it)")
 replace_or_new = st.selectbox("Are you replacing or creating from scratch", ("Replacing", "Creating from Scratch"))
 name = st.text_input("Alert Name")
 schedule = st.text_input("Schedule")
@@ -22,6 +23,11 @@ condition = st.text_input("Condition")
 then = st.text_input("Action")
 warehouse = st.text_input("Warehouse (Optional)")
 
+if st.button("Create Alert"):
+    try:
+        helpers.execute_sql(session, f"USE ROLE {role}")
+    except Exception as e:
+        st.error("")
 
 
 
