@@ -5,6 +5,11 @@ Alert creation and management in Snowflake can be a hassle, particularly at scal
 - Suspend, resume, execute and delete alerts at the click of a button
 - Create new alerts using an easy to operate wizard, no more looking up documentation to check required and optional parameters
 
+<p align="center">
+  <img src="snomonitor_images\alert_creation.png" alt="Image 1" width="45%">
+  <img src="snomonitor_images\alert_management.png" alt="Image 2" width="45%">
+</p>
+
 ## Prerequisites
 
 Make sure you have the following installed:
