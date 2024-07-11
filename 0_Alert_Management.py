@@ -4,12 +4,20 @@ import streamlit as st
 import sys
 sys.path.append('./src')
 from helpers import helpers
+import os
+from dotenv import load_dotenv
 
 st.set_page_config(
     page_title = "Alert Management"
 )
 
-session = helpers.create_snowpark_session('tcaulton', 'Foo1234!', 'QTB38119', 'accountadmin', 'compute_wh')
+load_dotenv()
+username = os.getenv('username')
+password = os.getenv('password')
+account = os.getenv('account')
+role = os.getenv('role')
+warehouse = os.getenv('warehouse')
+session = helpers.create_snowpark_session(username, password, account, role, warehouse)
 
 st.title(":blue[SnowMonitor] 🔎")
 st.header("UI Driven Snowflake Alert Management")

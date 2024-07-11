@@ -11,7 +11,8 @@ st.set_page_config(
 
 session = helpers.create_snowpark_session('tcaulton', 'Foo1234!', 'QTB38119', 'accountadmin', 'compute_wh')
 
-st.title("Alert Creation")
+st.title(":blue[Alert Creation] 🔔")
+st.header("Create alerts using the wizard below", divider='rainbow')
 
 role = st.text_input("What role do you want to use (case sensitive and host user must have access to it)")
 replace_or_new = st.selectbox("Are you replacing or creating from scratch", ("Replacing", "Creating from Scratch"))
