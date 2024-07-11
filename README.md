@@ -40,4 +40,4 @@ Make sure you have the following installed:
     ```
 
 - Host your streamlit app in the cloud:
-    I would reccomend either running the app locally if you're the only admin or hosting it on a private streamlit app for multiple administrators, in the latter case replace the environment variables with st.secrets() and add the secrets in streamlit cloud.  I will be releasing a version for native apps shortly
+    I would reccomend either running the app locally if you're the only admin or hosting it on a private streamlit app for multiple administrators.  In the latter case, replace the environment variables with st.secrets() and add the secrets in streamlit cloud.  I will be releasing a version for native apps shortly.

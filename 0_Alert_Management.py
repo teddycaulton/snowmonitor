@@ -47,6 +47,7 @@ for row in alert_data.values:
         with button1:
             if st.button("Delete Alert", key = f'{row[0]}_delete_alert'):
                 helpers.execute_sql(session, f"DROP ALERT IF EXISTS {row[1]}.{row[2]}.{row[0]}")
+                st.rerun()
         with button2:
             if row[5] == 'suspended':
                 if st.button("Resume Alert", key = f'{row[0]}_resume_alert'):
