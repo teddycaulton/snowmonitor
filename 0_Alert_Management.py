@@ -5,19 +5,23 @@ import sys
 sys.path.append('./src')
 from helpers import helpers
 import os
-from dotenv import load_dotenv
 
 st.set_page_config(
     page_title = "Alert Management"
 )
 
-load_dotenv()
-username = os.getenv('username')
-password = os.getenv('password')
-account = os.getenv('account')
-role = os.getenv('role')
-warehouse = os.getenv('warehouse')
-session = helpers.create_snowpark_session(username, password, account, role, warehouse)
+with st.form("Account Login"):
+    username = st.text_input('username')
+    password = st.text_input('password')
+    account = st.text_input('account')
+    role = st.text_input('role')
+    warehouse = st.text_input('warehouse')
+    submitted = st.form_submit_button("Login")
+    if submitted:
+        try:
+            session = helpers.create_snowpark_session(username, password, account, role, warehouse)
+        except Exception as e:
+            st.write(f"Login Failed: {e}")
 
 st.title(":blue[SnowMonitor] 🔎")
 st.header("UI Driven Snowflake Alert Management")
